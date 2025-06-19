@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using static MusicDataInterface;
 using static DataConst;
 
-namespace ModTemplate.Plugins
+namespace MoreKeyboardInputs.Plugins
 {
     internal class SwapJpEngTitlesPatch
     {

@@ -4,9 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ModName>ModTemplate</ModName>
-    <ModVersion>0.0.1</ModVersion>
-    <Description>A Rhythm Festival template for mod creation.</Description>
+    <ModName>MoreKeyboardInputs</ModName>
+    <ModVersion>0.1.0</ModVersion>
+    <Description>Allows more than 1 keyboard input for each left/right don/ka in Rhythm Festival</Description>
   </PropertyGroup>
   
   <Target Name="UserFile" AfterTargets="PreBuildEvent">

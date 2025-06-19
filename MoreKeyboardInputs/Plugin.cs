@@ -4,18 +4,18 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using BepInEx.Configuration;
-using ModTemplate.Plugins;
+using MoreKeyboardInputs.Plugins;
 using UnityEngine;
 using System.Collections;
 using SaveProfileManager.Plugins;
 using System.Reflection;
 
-namespace ModTemplate
+namespace MoreKeyboardInputs
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, ModName, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BasePlugin
     {
-        public const string ModName = "ModTemplate";
+        public const string ModName = "MoreKeyboardInputs";
 
         public static Plugin Instance;
         private Harmony _harmony = null;
@@ -149,7 +149,7 @@ namespace ModTemplate
             plugin.AssignUnloadFunction(UnloadPlugin);
             //plugin.AssignReloadSaveFunction(ReloadPlugin);
             plugin.AssignConfigSetupFunction(SetupConfig);
-            plugin.AddToManager();
+            plugin.AddToManager(true);
         }
 
         private bool IsSaveManagerLoaded()

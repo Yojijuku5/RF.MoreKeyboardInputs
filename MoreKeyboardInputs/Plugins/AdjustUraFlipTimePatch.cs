@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModTemplate.Plugins
+namespace MoreKeyboardInputs.Plugins
 {
     internal class AdjustUraFlipTimePatch
     {
