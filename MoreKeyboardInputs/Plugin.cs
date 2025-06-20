@@ -25,8 +25,6 @@ namespace MoreKeyboardInputs
         //public ConfigEntry<string> ConfigSongTitleLanguageOverride;
         //public ConfigEntry<float> ConfigFlipInterval;
 
-
-
         public override void Load()
         {
             Instance = this;
@@ -85,6 +83,8 @@ namespace MoreKeyboardInputs
                 //result &= Instance.PatchFile(typeof(SwapJpEngTitlesPatch));
                 //result &= Instance.PatchFile(typeof(AdjustUraFlipTimePatch));
                 //SwapJpEngTitlesPatch.SetOverrideLanguages();
+                result &= Instance.PatchFile(typeof(MoreKeyboardInputsPatch));
+
                 if (result)
                 {
                     Logger.Log($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");

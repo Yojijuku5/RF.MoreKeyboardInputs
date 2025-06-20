@@ -5,47 +5,46 @@ using HarmonyLib;
 
 namespace MoreKeyboardInputs.Plugins 
 {
-    internal class MoreKeyboardInputs 
+    [HarmonyPatch]
+    internal class MoreKeyboardInputsPatch
     {
         [HarmonyPatch(typeof(EnsoInput))]
         [HarmonyPatch(nameof(EnsoInput.GetLastInputForCore))]
-        [HarmonyPatch(MethodType.Normal)]
         [HarmonyPrefix]
 
-        public static bool EnsoInput_GetLastInputForCore_Prefix(EnsoInput __instance, ref TaikoCoreTypes.UserInputType __result, int player)
+        public static bool MoreDonKa(EnsoInput __instance, ref TaikoCoreTypes.UserInputType __result, int player)
         {
-            TaikoCoreTypes.UserInputType NewGetLastInputForCore()
+            TaikoCoreTypes.UserInputType NewMoreKeyboardInputs()
             {
                 EnsoInput.EnsoInputFlag flag = __instance.GetLastInput(player);
 
-                if (Keyboard.current.vKey.wasPressedThisFrame)
+                if (Keyboard.current.vKey.wasPressedThisFrame || Keyboard.current.nKey.wasPressedThisFrame)
                 {
-                    flag = EnsoInput.EnsoInputFlag.DonL;
-                    Logger.Log("Test");
+                    flag = EnsoInput.EnsoInputFlag.DaiDon;
                 }
-                else if (Keyboard.current.nKey.wasPressedThisFrame)
+                else if (Keyboard.current.cKey.wasPressedThisFrame || Keyboard.current.mKey.wasPressedThisFrame)
                 {
-                    flag = EnsoInput.EnsoInputFlag.DonR;
-                    Logger.Log("Test");
+                    flag = EnsoInput.EnsoInputFlag.DaiKatsu;
                 }
-                if (__instance.ensoParam.EnsoEndType == EnsoPlayingParameter.EnsoEndTypes.OptionPerfect || __instance.ensoParam.EnsoEndType == EnsoPlayingParameter.EnsoEndTypes.OptionTraining)
+
+                if (flag == EnsoInput.EnsoInputFlag.DonR ||
+                    flag == EnsoInput.EnsoInputFlag.DonL ||
+                    flag == EnsoInput.EnsoInputFlag.DaiDon)
                 {
-                    flag = EnsoInput.EnsoInputFlag.None;
+                    flag = EnsoInput.EnsoInputFlag.DaiDon;
+                }
+                else if (flag == EnsoInput.EnsoInputFlag.KatsuR ||
+                         flag == EnsoInput.EnsoInputFlag.KatsuL ||
+                         flag == EnsoInput.EnsoInputFlag.DaiKatsu)
+                {
+                    flag = EnsoInput.EnsoInputFlag.DaiKatsu;
                 }
 
                 return __instance.ToUserInputType(flag);
             }
 
-            if ((__instance.ensoParam.networkGameMode != Scripts.EnsoGame.Network.NetworkGameMode.RankMatch) &&
-                (__instance.ensoParam.networkGameMode != Scripts.EnsoGame.Network.NetworkGameMode.RoomMatchVs))
-            {
-                __result = NewGetLastInputForCore();
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            __result = NewMoreKeyboardInputs();
+            return false;
         }
     }
 }
