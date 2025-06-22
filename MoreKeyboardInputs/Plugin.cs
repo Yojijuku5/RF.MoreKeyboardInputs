@@ -24,6 +24,10 @@ namespace MoreKeyboardInputs
         public ConfigEntry<bool> ConfigEnabled;
         //public ConfigEntry<string> ConfigSongTitleLanguageOverride;
         //public ConfigEntry<float> ConfigFlipInterval;
+        public ConfigEntry<string> ConfigExtraDonL;
+        public ConfigEntry<string> ConfigExtraDonR;
+        public ConfigEntry<string> ConfigExtraKaL;
+        public ConfigEntry<string> ConfigExtraKaR;
 
         public override void Load()
         {
@@ -64,6 +68,11 @@ namespace MoreKeyboardInputs
             //    "FlipInterval",
             //    3f,
             //    "How quickly the difficulty flips between oni and ura.");
+
+            ConfigExtraDonL = config.Bind("Toggles", "Extra Left Don Key", "v", "Sets the key for extra Left Don");
+            ConfigExtraDonR = config.Bind("Toggles", "Extra Right Don Key", "n", "Sets the key for extra Right Don");
+            ConfigExtraKaL = config.Bind("Toggles", "Extra Left Katsu Key", "c", "Sets the key for extra Left Ka");
+            ConfigExtraKaR = config.Bind("Toggles", "Extra Right Katsu Key", "m", "Sets the key for extra Right Ka");
         }
 
         private void SetupHarmony()
@@ -156,7 +165,7 @@ namespace MoreKeyboardInputs
         {
             try
             {
-                Assembly loadedAssembly = Assembly.Load("com.DB.RF.SaveProfileManager");
+                Assembly loadedAssembly = Assembly.Load("RF.SaveProfileManager");
                 return loadedAssembly != null;
             }
             catch

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using BepInEx;
+﻿using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using HarmonyLib;
+using System.Reflection;
 
 namespace MoreKeyboardInputs.Plugins 
 {
@@ -14,15 +14,20 @@ namespace MoreKeyboardInputs.Plugins
 
         public static bool MoreDonKa(EnsoInput __instance, ref TaikoCoreTypes.UserInputType __result, int player)
         {
+            var newDonL = typeof(Keyboard).GetProperty(Plugin.Instance.ConfigExtraDonL.Value + "Key", BindingFlags.Public | BindingFlags.Instance)?.GetValue(Keyboard.current) as KeyControl;
+            var newDonR = typeof(Keyboard).GetProperty(Plugin.Instance.ConfigExtraDonR.Value + "Key", BindingFlags.Public | BindingFlags.Instance)?.GetValue(Keyboard.current) as KeyControl;
+            var newKaL = typeof(Keyboard).GetProperty(Plugin.Instance.ConfigExtraKaL.Value + "Key", BindingFlags.Public | BindingFlags.Instance)?.GetValue(Keyboard.current) as KeyControl;
+            var newKaR = typeof(Keyboard).GetProperty(Plugin.Instance.ConfigExtraKaR.Value + "Key", BindingFlags.Public | BindingFlags.Instance)?.GetValue(Keyboard.current) as KeyControl;
+
             TaikoCoreTypes.UserInputType NewMoreKeyboardInputs()
             {
                 EnsoInput.EnsoInputFlag flag = __instance.GetLastInput(player);
 
-                if (Keyboard.current.vKey.wasPressedThisFrame || Keyboard.current.nKey.wasPressedThisFrame)
+                if ((newDonL != null && newDonL.wasPressedThisFrame) || (newDonR != null && newDonR.wasPressedThisFrame))
                 {
                     flag = EnsoInput.EnsoInputFlag.DaiDon;
                 }
-                else if (Keyboard.current.cKey.wasPressedThisFrame || Keyboard.current.mKey.wasPressedThisFrame)
+                else if ((newKaL != null && newKaL.wasPressedThisFrame) || (newKaR != null && newKaR.wasPressedThisFrame))
                 {
                     flag = EnsoInput.EnsoInputFlag.DaiKatsu;
                 }

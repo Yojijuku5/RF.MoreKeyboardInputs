@@ -20,7 +20,7 @@
   </Target>
 
   <PropertyGroup>
-    <AssemblyName>com.DB.RF.$(ModName)</AssemblyName>
+    <AssemblyName>RF.$(ModName)</AssemblyName>
     <Version>$(ModVersion)</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
