@@ -1,5 +1,5 @@
 # RF.MoreKeyboardInputs
- A Rhythm Festival mod that allows an extra set of left/right Don/Ka inputs. Useful for drumrolls and charts with high note density.
+A Rhythm Festival mod that allows an extra set of left/right Don/Ka inputs. Useful for drumrolls and charts with high note density. I'm not working on this right now, so there isn't any visual or audio feedback (no Don/Ka sound and input doesn't show up on the mini drum), and doing Renda with the extra inputs shows Ka if you press Don, but it does work!
  
  <a href="taikomodmanager:https://github.com/Yojijuku5/RF.MoreKeyboardInputs"> <img src="Resources/InstallButton.png" alt="One-click Install using the Taiko Mod Manager" width="256"/> </a>
  
